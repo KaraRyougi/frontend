@@ -35,7 +35,7 @@ const PortUserEditor = ({ portId, serverId, isModalOpen, setIsModalOpen }) => {
       isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
     >
-      <ModalHeader>查看/添加用户</ModalHeader>
+      <ModalHeader>Check / Add User</ModalHeader>
       <ModalBody>
         <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
           <Label className="mt-4 flex flex-row justify-end">
@@ -73,7 +73,7 @@ const PortUserEditor = ({ portId, serverId, isModalOpen, setIsModalOpen }) => {
                         )
                       }}
                     >
-                      删除
+                      Delete
                           </Button>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ const PortUserEditor = ({ portId, serverId, isModalOpen, setIsModalOpen }) => {
       <ModalFooter>
         <div className="hidden sm:block">
           <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-            取消
+            Cancel
             </Button>
         </div>
         <div className="block w-full sm:hidden">
@@ -95,7 +95,7 @@ const PortUserEditor = ({ portId, serverId, isModalOpen, setIsModalOpen }) => {
             layout="outline"
             onClick={() => setIsModalOpen(false)}
           >
-            取消
+            Cancel
             </Button>
         </div>
       </ModalFooter>

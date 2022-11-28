@@ -28,20 +28,20 @@ const serverFactsToBadge = (system, permission) => {
   if (!system)
     return (
       <div className="">
-        <Badge type="warning">SSH状态未知</Badge>
+        <Badge type="warning">Unknown SSH login status.</Badge>
         {permission === "user" ? (
-          <span>请稍等片刻</span>
+          <span>Please wait.</span>
         ) : (
-            <span>请稍等片刻或重新编辑一次服务器以触发服务器状态更新</span>
+            <span>Please wait or re-edit to trigger status update.</span>
           )}
       </div>
     );
   if (!system.os_family)
     return (
       <div className="">
-        <Badge type="warning">SSH连接失败</Badge>
+        <Badge type="warning">SSH login failed.</Badge>
         {permission === "user" ? (
-          <span>请通知管理员检查SSH连接信息</span>
+          <span>Please confirm your SSH login credential.</span>
         ) : (
             <span className="">{system.msg}</span>
           )}
@@ -49,7 +49,7 @@ const serverFactsToBadge = (system, permission) => {
     );
   return (
     <div className="">
-      <Badge type="success">SSH连接成功</Badge>
+      <Badge type="success">Successfully connected via SSH.</Badge>
       <span>{`${system.distribution} ${system.distribution_version} (${system.distribution_release}) ${system.architecture}`}</span>
     </div>
   );
@@ -97,7 +97,7 @@ function Servers() {
               setEditorOpen(true);
             }}
           >
-            添加
+            Add
           </Button>
         </AuthSelector>
       </div>
@@ -110,13 +110,13 @@ function Servers() {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>名字</TableCell>
-                <TableCell>地址</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Address</TableCell>
                 <AuthSelector permissions={['admin', 'ops']}>
-                  <TableCell>端口</TableCell>
+                  <TableCell>Port</TableCell>
                 </AuthSelector>
-                <TableCell>SSH状态</TableCell>
-                <TableCell>动作</TableCell>
+                <TableCell>SSH Status</TableCell>
+                <TableCell>Action</TableCell>
               </tr>
             </TableHeader>
             <TableBody>
@@ -168,7 +168,7 @@ function Servers() {
                           history.push(`/app/servers/${server.id}/ports`);
                         }}
                       >
-                        查看端口
+                        Ports
                     </ColoredButton>
                       <AuthSelector permissions={['admin', 'ops']}>
                         <ColoredButton
@@ -176,7 +176,7 @@ function Servers() {
                             history.push(`/app/servers/${server.id}/users`)
                           }
                         >
-                          查看用户
+                          Users
                         </ColoredButton>
                         <ColoredButton
                           onClick={() => {
@@ -184,7 +184,7 @@ function Servers() {
                             setEditorOpen(true);
                           }}
                         >
-                          编辑服务器
+                          Server Edit
                         </ColoredButton>
                       </AuthSelector>
                     </div>

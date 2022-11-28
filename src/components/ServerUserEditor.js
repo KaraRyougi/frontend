@@ -61,7 +61,7 @@ const ServerUserEditor = ({ serverUser, isModalOpen, setIsModalOpen }) => {
     if (serverUser.config && serverUser.config.valid_until) {
       setValidUntilDate(
         new Date(serverUser.config.valid_until).toLocaleString(
-          "zh-CN",
+          "en-US",
           DateOptions
         )
       );
@@ -82,72 +82,18 @@ const ServerUserEditor = ({ serverUser, isModalOpen, setIsModalOpen }) => {
 
   return (
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <ModalHeader>限制服务器用户</ModalHeader>
+      <ModalHeader>Limit User Number</ModalHeader>
       <ModalBody>
         <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-          {/* <Label className="mt-4">
-            <div className="flex flex-row">
-              <span className="w-1/2">限制出站流量</span>
-              <span className="w-1/2">限制入站流量</span>
-            </div>
-            <div className="mt-1 flex flex-row items-center">
-              <div className="flex w-1/4">
-                <Input
-                  placeholder={"空则不限制"}
-                  value={egressLimit}
-                  valid={validEgress()}
-                  onChange={(e) => setEgressLimit(e.target.value)}
-                />
-              </div>
-              <div className="flex w-1/4">
-                <Select
-                  value={egressLimitScalar}
-                  onChange={(e) => setEgressLimitScalar(e.target.value)}
-                >
-                  {SpeedLimitOptions.map((option) => (
-                    <option
-                      value={option.value}
-                      key={`egress_limit_options_${option.value}`}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </div>
-              <div className="flex w-1/4">
-                <Input
-                  placeholder={"空则不限制"}
-                  value={ingressLimit}
-                  valid={validIngress()}
-                  onChange={(e) => setIngressLimit(e.target.value)}
-                />
-              </div>
-              <div className="flex w-1/4">
-                <Select
-                  value={ingressLimitScalar}
-                  onChange={(e) => setIngressLimitScalar(e.target.value)}
-                >
-                  {SpeedLimitOptions.map((option) => (
-                    <option
-                      value={option.value}
-                      key={`ingress_limit_options_${option.value}`}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </Select>
-              </div>
-            </div>
-          </Label> */}
           <Label className="mt-4">
             <div className="flex flex-row">
-              <span className="w-1/2">转发到期时间</span>
-              <span className="w-1/2">到期时动作</span>
+              <span className="w-1/2">Expire Date</span>
+              <span className="w-1/2">Action when Expired</span>
             </div>
             <div className="mt-1 flex flex-row items-center">
               <div className="flex w-1/2">
                 <Input
-                  placeholder={"空则不限制"}
+                  placeholder={"Leave empty for no action."}
                   value={validUntilDate}
                   valid={validValidUntilDate()}
                   onChange={(e) => {
@@ -173,22 +119,22 @@ const ServerUserEditor = ({ serverUser, isModalOpen, setIsModalOpen }) => {
             </div>
             {isNaN(Date.parse(validUntilDate)) ? null : (
               <div className="flex flex-row items-center">
-                <HelperText>{`转发将在${new Date(validUntilDate).toLocaleString(
-                  "zh-CN",
+                <HelperText>{`The rule will expie on ${new Date(validUntilDate).toLocaleString(
+                  "en-US",
                   DateOptions
-                )}到期`}</HelperText>
+                )}.`}</HelperText>
               </div>
             )}
           </Label>
           <Label className="mt-4">
             <div className="flex flex-row">
-              <span className="w-1/2">限制流量</span>
-              <span className="w-1/2">流量超限时动作</span>
+              <span className="w-1/2">Limit Traffic Usage</span>
+              <span className="w-1/2">Overuse Action</span>
             </div>
             <div className="mt-1 flex flex-row items-center">
               <div className="flex w-1/4">
                 <Input
-                  placeholder={"空则不限制"}
+                  placeholder={"Leave empty for no action."}
                   value={quota}
                   valid={validValidUntilDate()}
                   onChange={(e) => {
@@ -235,17 +181,17 @@ const ServerUserEditor = ({ serverUser, isModalOpen, setIsModalOpen }) => {
               checked={isDelete}
               onChange={() => setIsDelete(!isDelete)}
             />
-            <span className="ml-2">我要取消用户对这台服务器的权限</span>
+            <span className="ml-2">Block User's Access</span>
           </Label>
         </div>
       </ModalBody>
       <ModalFooter>
         <div className="w-full flex flex-row justify-end space-x-2">
           <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-            取消
+            Cancel
           </Button>
           <Button onClick={submitForm} disabled={!validForm()}>
-            确认
+            Confirm
           </Button>
         </div>
       </ModalFooter>

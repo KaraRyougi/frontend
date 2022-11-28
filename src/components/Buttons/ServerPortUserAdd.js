@@ -53,7 +53,7 @@ const ServerPortUserAdd = ({
         }}
       >
         <PlusIcon className="w-5 h-5" />
-        添加用户
+        Add User
       </button>
       <Dropdown
         align="right"

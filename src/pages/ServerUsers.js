@@ -58,8 +58,8 @@ const ServerUsers = () => {
         setIsModalOpen={setIsEditorOpen}
       />
       <ConfimationModal
-        title="请再次确认"
-        body={`确定要移除${currentServerUser.email}对服务器${server.name}的访问权限？`}
+        title="Access Disable Confirmation"
+        body={`Are you sure you want to disable access to ${server.name} by ${currentServerUser.email}?`}
         callback={() =>
           dispatch(deleteServerUser(server_id, currentServerUser.id))
         }
@@ -86,7 +86,7 @@ const ServerUsers = () => {
       ) : (
           <>
             <div className="flex flex-row justify-between items-center">
-              <PageTitle>用户详情</PageTitle>
+              <PageTitle>User Detail</PageTitle>
               <ServerPortUserAdd
                 serverId={server_id}
                 addingType="server"
@@ -99,10 +99,10 @@ const ServerUsers = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableCell>邮件</TableCell>
-                    <TableCell>用量</TableCell>
-                    <TableCell>到期时间</TableCell>
-                    <TableCell>动作</TableCell>
+                    <TableCell>E-mail</TableCell>
+                    <TableCell>Traffic Usage</TableCell>
+                    <TableCell>Expire Date</TableCell>
+                    <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHeader>
 
@@ -124,7 +124,7 @@ const ServerUsers = () => {
                           </TableCell>
                           <TableCell>
                             <span>
-                              已使用{getReadableSize(user.download + user.upload)}
+                              Traffic used: {getReadableSize(user.download + user.upload)}
                               {user.config.quota
                                 ? ` / ${getReadableSize(user.config.quota)}`
                                 : ""}
@@ -133,10 +133,10 @@ const ServerUsers = () => {
                           <TableCell>
                             {user.config.valid_until
                               ? new Date(user.config.valid_until).toLocaleString(
-                                "zh-CN",
+                                "en-US",
                                 DateOptions
                               )
-                              : "无"}
+                              : "N/A"}
                           </TableCell>
                           <TableCell>
                             <div className="flex justify-start space-x-1">
@@ -147,7 +147,7 @@ const ServerUsers = () => {
                                   setIsEditorOpen(true);
                                 }}
                               >
-                                限制
+                                Limit
                           </ColoredButton>
                               <ColoredButton
                                 color="red"
@@ -159,7 +159,7 @@ const ServerUsers = () => {
                                   setIsDeleting(true);
                                 }}
                               >
-                                删除
+                                Delete
                           </ColoredButton>
                             </div>
                           </TableCell>

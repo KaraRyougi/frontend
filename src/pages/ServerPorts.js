@@ -61,52 +61,33 @@ const statusToBadge = (rule, server, port) => {
   if (rule) {
     const status = rule.status;
     if (status === "running" || status === "starting") {
-      ret.push(<Badge type="warning">部署中</Badge>);
+      ret.push(<Badge type="warning">Deploying...</Badge>);
       ret.push(
         <Link
           className="text-blue-600"
           to={`/app/servers/${server.id}/${port.id}/artifacts`}
         >
-          查看日志
+          Logs
         </Link>
       );
     } else {
       if (status === "successful") {
-        ret.push(<Badge type="success">端口功能已部署</Badge>);
+        ret.push(<Badge type="success">Port Function Deployed</Badge>);
         if (rule.method === "iptables") {
           ret.push(
             <span>{`[${rule.config.type}] ${rule.config.remote_address}:${rule.config.remote_port}`}</span>
-          );
-        } else if (rule.method === "gost") {
-          ret.push(
-            `gost${rule.config.ServeNodes.map((n) => "\n-L " + n).join(
-              ""
-            )}${rule.config.ChainNodes.map((n) => "\n-F " + n).join("")}`
-          );
-        } else if (rule.method === "brook") {
-          ret.push(`brook ${rule.config.command}`);
-        } else if (rule.method === "tiny_port_mapper") {
-          ret.push(
-            `tinyPortMapper -l0.0.0.0:${port.external_num ? port.external_num : port.num
-            } -r${rule.config.remote_address}:${rule.config.remote_port}`
-          );
-        } else if (rule.method === "node_exporter") {
-          ret.push("node_exporter");
-          ret.push(
-            `请添加${server.address}:${port.external_num ? port.external_num : port.num
-            }到promethus.yml中`
           );
         } else {
           ret.push(rule.method);
         }
       } else if (status === "failed") {
-        ret.push(<Badge type="danger">端口功能部署失败</Badge>);
+        ret.push(<Badge type="danger">Port Function Failed to Deploy</Badge>);
         ret.push(
           <Link
             className="text-blue-600"
             to={`/app/servers/${server.id}/${port.id}/artifacts`}
           >
-            查看日志
+            Logs
           </Link>
         );
         if (rule.config && rule.config.error) {
@@ -128,7 +109,7 @@ const usersToBadge = (history, users) => {
   if (users.length > 0) {
     return (
       <div className="flex flex-col">
-        <Badge type="success">有{`${users.length}`}人正在使用此端口</Badge>
+        <Badge type="success">{`${users.length}`} users are using this port.</Badge>
         {users.map((u) => (
           <button
             onClick={() => history.push(`/app/users/${u.user_id}`)}
@@ -140,7 +121,7 @@ const usersToBadge = (history, users) => {
       </div>
     );
   }
-  return <Badge type="warning">此端口无人使用</Badge>;
+  return <Badge type="warning">This port is not used.</Badge>;
 };
 
 const formatSpeed = (speed) => {
@@ -234,7 +215,7 @@ function ServerPorts() {
         />
       </AuthSelector>
       <div className="flex justify-between items-center">
-        <PageTitle>端口</PageTitle>
+        <PageTitle>Port</PageTitle>
         <AuthSelector permissions={["admin", "ops"]}>
           <Button
             size="regular"
@@ -244,7 +225,7 @@ function ServerPorts() {
               setPortEditorOpen(true);
             }}
           >
-            添加端口
+            Add New Port
           </Button>
         </AuthSelector>
       </div>
@@ -253,13 +234,13 @@ function ServerPorts() {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>端口号</TableCell>
-                <TableCell>备注</TableCell>
-                <TableCell>功能</TableCell>
-                <TableCell>限速</TableCell>
-                <TableCell>流量</TableCell>
-                <TableCell>用户</TableCell>
-                <TableCell>动作</TableCell>
+                <TableCell>Port Number</TableCell>
+                <TableCell>Comment</TableCell>
+                <TableCell>Function</TableCell>
+                <TableCell>Speed Limit</TableCell>
+                <TableCell>Traffic</TableCell>
+                <TableCell>User</TableCell>
+                <TableCell>Action</TableCell>
               </tr>
             </TableHeader>
             <TableBody>
@@ -274,7 +255,7 @@ function ServerPorts() {
                             <Tooltip
                               tip={
                                 <span>
-                                  <Badge>内部端口</Badge>
+                                  <Badge>Internal Port</Badge>
                                   {port.num}
                                 </span>
                               }
@@ -357,7 +338,7 @@ function ServerPorts() {
                               setPortUserEditorOpen(true);
                             }}
                           >
-                            查看用户
+                            User
                           </Button>
                         </AuthSelector>
                         <Button
@@ -367,7 +348,7 @@ function ServerPorts() {
                             setPortEditorOpen(true);
                           }}
                         >
-                          修改端口
+                          Edit Port
                         </Button>
                         {port.forward_rule ? (
                           <>
@@ -390,7 +371,7 @@ function ServerPorts() {
                                   permission === "user")
                               }
                             >
-                              修改转发
+                              Modify Forwarding Rule
                             </Button>
                           </>
                         ) : (
@@ -402,7 +383,7 @@ function ServerPorts() {
                                 setRuleEditorOpen(true);
                               }}
                             >
-                              添加转发
+                              Add Forwarding Rule
                             </Button>
                           )}
                       </div>

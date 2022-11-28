@@ -181,20 +181,20 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
 
   return (
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <ModalHeader>{port ? "修改" : "添加"}端口</ModalHeader>
+      <ModalHeader>{port ? "Edit" : "Add"} a Port</ModalHeader>
       {port ?
         <ModalBody>
           <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <AuthSelector permissions={['admin', 'ops']}>
               <Label className="mt-2">
-                <span>端口</span>
+                <span>Port</span>
                 <Input className="mt-1" value={num} disabled={true} />
               </Label>
               <Label className="mt-1">
-                <span>公网端口</span>
+                <span>Public Open Port</span>
                 <Input
                   className="mt-1"
-                  placeholder={"可为空，如服务器为NAT则填写"}
+                  placeholder={"Only required for servers behind NAT."}
                   value={externalNum}
                   valid={validExternalNum()}
                   onChange={(e) => setExternalNum(e.target.value)}
@@ -202,13 +202,13 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
               </Label>
               <Label className="mt-1">
                 <div className="flex flex-row">
-                  <span className="w-1/2">限制出站流量</span>
-                  <span className="w-1/2">限制入站流量</span>
+                  <span className="w-1/2">Limit Inbound Traffic</span>
+                  <span className="w-1/2">Limit Outbound Traffic</span>
                 </div>
                 <div className="mt-1 flex flex-row items-center">
                   <div className="flex w-1/4">
                     <Input
-                      placeholder={"空则不限制"}
+                      placeholder={"Leave empty for no limit."}
                       value={egressLimit}
                       valid={validEgress()}
                       onChange={(e) => setEgressLimit(e.target.value)}
@@ -231,7 +231,7 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
                   </div>
                   <div className="flex w-1/4">
                     <Input
-                      placeholder={"空则不限制"}
+                      placeholder={"Leave empty for no limit."}
                       value={ingressLimit}
                       valid={validIngress()}
                       onChange={(e) => setIngressLimit(e.target.value)}
@@ -256,13 +256,13 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
               </Label>
               <Label className="mt-1">
                 <div className="flex flex-row">
-                  <span className="w-1/2">转发到期时间</span>
-                  <span className="w-1/2">到期时动作</span>
+                  <span className="w-1/2">Expire Date</span>
+                  <span className="w-1/2">Action when Expired</span>
                 </div>
                 <div className="mt-1 flex flex-row items-center">
                   <div className="flex w-1/2">
                     <Input
-                      placeholder={"空则不限制"}
+                      placeholder={"Leave empty for no limit."}
                       value={validUntilDate}
                       valid={validValidUntilDate()}
                       onChange={(e) => {
@@ -288,22 +288,22 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
                 </div>
                 {isNaN(Date.parse(validUntilDate)) ? null : (
                   <div className="flex flex-row items-center">
-                    <HelperText>{`转发将在${new Date(validUntilDate).toLocaleString(
-                      "zh-CN",
+                    <HelperText>{`The rule will expire on ${new Date(validUntilDate).toLocaleString(
+                      "en-US",
                       DateOptions
-                    )}到期`}</HelperText>
+                    )}.`}</HelperText>
                   </div>
                 )}
               </Label>
               <Label className="mt-1">
                 <div className="flex flex-row">
-                  <span className="w-1/2">限制流量</span>
-                  <span className="w-1/2">流量超限时动作</span>
+                  <span className="w-1/2">Limit Traffic Usage</span>
+                  <span className="w-1/2">Overuse Action</span>
                 </div>
                 <div className="mt-1 flex flex-row items-center">
                   <div className="flex w-1/4">
                     <Input
-                      placeholder={"空则不限制"}
+                      placeholder={"Leave empty for no limit."}
                       value={quota}
                       valid={validValidUntilDate()}
                       onChange={(e) => {
@@ -345,7 +345,7 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
               </Label>
             </AuthSelector>
             <Label className="mt-1">
-              <span>备注</span>
+              <span>Comment</span>
               <Input
                 className="mt-1"
                 value={notes}
@@ -360,7 +360,7 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
                     checked={isDelete}
                     onChange={() => setIsDelete(!isDelete)}
                   />
-                  <span className="ml-2">我要删除这个端口</span>
+                  <span className="ml-2">Delete Port</span>
                 </Label>
               ) : null}
             </AuthSelector>
@@ -371,20 +371,20 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
           <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <AuthSelector permissions={['admin', 'ops']}>
               <Label className="mt-2">
-                <span>端口</span>
+                <span>Port</span>
                 <Input
                   className="mt-1"
-                  placeholder={"单个端口：8000；端口段：8000-8010"}
+                  placeholder={"A single port or a port range (e.g. 8000-8080)."}
                   value={num}
                   valid={validNum()}
                   onChange={(e) => setNum(e.target.value)}
                 />
               </Label>
               <Label className="mt-1">
-                <span>公网端口</span>
+                <span>Public Open Port</span>
                 <Input
                   className="mt-1"
-                  placeholder={"可为空，如服务器为NAT则填写，批量添加时无作用"}
+                  placeholder={"Only required for servers behind NAT."}
                   value={externalNum}
                   valid={validExternalNum()}
                   onChange={(e) => setExternalNum(e.target.value)}
@@ -397,14 +397,14 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
         <div className="w-full flex flex-row justify-end space-x-2">
           {port ? (
             <Button layout="outline" onClick={resetUsage}>
-              重置流量
+              Traffic Usage Reset
             </Button>
           ) : null}
           <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-            取消
+            Cancel
           </Button>
           <Button onClick={submitForm} disabled={!validForm()}>
-            {port ? "修改" : "添加"}
+            {port ? "Edit" : "Add"}
           </Button>
         </div>
       </ModalFooter>

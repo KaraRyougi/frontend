@@ -95,7 +95,7 @@ const IptablesRuleEditor = ({
   return (
     <>
       <Label className="mt-4">
-        <span>转发类型</span>
+        <span>Forwarding Protocol</span>
         <Select
           className="mt-1"
           value={type}
@@ -112,7 +112,7 @@ const IptablesRuleEditor = ({
         </Select>
       </Label>
       <Label className="mt-4">
-        <span>远端地址</span>
+        <span>Remote Address</span>
         <Input
           className="mt-1"
           placeholder="www.example.com"
@@ -122,7 +122,7 @@ const IptablesRuleEditor = ({
         />
       </Label>
       <Label className="mt-4">
-        <span>远端端口</span>
+        <span>Remote Port</span>
         <Input
           className="mt-1"
           placeholder={0}

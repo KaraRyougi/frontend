@@ -56,19 +56,19 @@ const User = () => {
     <>
       <div className="flex flex-col justify-start">
         <div className="flex justify-between items-center">
-          <PageTitle>用户详情 [<span className={user.is_ops ? "text-purple-700" : ""}>{user.email}</span>]</PageTitle>
+          <PageTitle>User Detail [<span className={user.is_ops ? "text-purple-700" : ""}>{user.email}</span>]</PageTitle>
           <Button
             size="regular"
             onClick={() => {
               setIsUserEditorOpen(true);
             }}
           >
-            编辑
+            Edit
           </Button>
         </div>
         {user.notes ? (
           <span>
-            备注： <MyLinkify>{user.notes}</MyLinkify>
+            Comment: <MyLinkify>{user.notes}</MyLinkify>
           </span>
         ) : null}
       </div>
@@ -79,7 +79,7 @@ const User = () => {
       />
       {!userServersLoading ? (
         userServers.length === 0 ? (
-          <SectionTitle>用户没有权限访问任何服务器和端口</SectionTitle>
+          <SectionTitle>This user has no access to any server or port.</SectionTitle>
         ) : (
           userServers.map((userServer) => (
             <div className="mt-3 flex flex-col">
@@ -88,7 +88,7 @@ const User = () => {
                   <span>
                     {userServer.server.name} [{userServer.server.address}]
                   </span>
-                  <Tooltip tip="查看所有端口">
+                  <Tooltip tip="All Ports">
                     <Button
                       iconLeft={DotsNine}
                       size="small"
@@ -100,7 +100,7 @@ const User = () => {
                       }
                     />
                   </Tooltip>
-                  <Tooltip tip="查看所有用户">
+                  <Tooltip tip="All Users">
                     <Button
                       iconLeft={Users}
                       size="small"
@@ -124,8 +124,8 @@ const User = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableCell>端口</TableCell>
-                      <TableCell>用量</TableCell>
+                      <TableCell>Port</TableCell>
+                      <TableCell>Traffic</TableCell>
                       {/* <TableCell>动作</TableCell> */}
                     </TableRow>
                   </TableHeader>

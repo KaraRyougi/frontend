@@ -65,11 +65,11 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
 
   return (
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <ModalHeader>{user ? "修改" : "添加"}用户</ModalHeader>
+      <ModalHeader>{user ? "Edit" : "Add"} User</ModalHeader>
       <ModalBody>
         <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
           <Label className="mt-4">
-            <span>邮件</span>
+            <span>E-mail</span>
             <Input
               className="mt-1"
               value={email}
@@ -78,7 +78,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
             />
           </Label>
           <Label className="mt-4">
-            <span>{user ? "重置" : ""}密码</span>
+            <span>{user ? "Reset " : ""}Password</span>
             <Input
               className="mt-1"
               value={password}
@@ -87,7 +87,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
             />
           </Label>
           <Label className="mt-4">
-            <span>备注</span>
+            <span>Comment</span>
             <Textarea
               rows="2"
               value={notes}
@@ -101,8 +101,8 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
                 checked={isOps}
                 onChange={() => setIsOps(!isOps)}
               />
-              <Tooptip tip="服务器管理员会拥有被分配服务器的所有权限">
-              <span className="ml-2 text-purple-700">服务器管理员</span>
+              <Tooptip tip="Server Admin has full access to the assigned server.">
+              <span className="ml-2 text-purple-700">Server Admin</span>
               </Tooptip>
             </Label>
 
@@ -113,7 +113,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
                 checked={!isActive}
                 onChange={() => setIsActive(!isActive)}
               />
-              <span className="ml-2">我要暂停这个用户(转发仍有效)</span>
+              <span className="ml-2">Pause User Access to the Web UI (Forwarding Rules Kept)</span>
             </Label>
           ) : null}
           {user && !isActive ? (
@@ -123,7 +123,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
                 checked={clearRules}
                 onChange={() => setClearRules(!clearRules)}
               />
-              <span className="ml-2">清退(删除所有转发，端口用量清零)</span>
+              <span className="ml-2">Delete All Forwarding Rules</span>
             </Label>
           ) : null}
         </div>
@@ -131,10 +131,10 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
       <ModalFooter>
         <div className="w-full flex flex-row justify-end space-x-2">
           <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-            取消
+            Cancel
           </Button>
           <Button onClick={submitForm} disabled={!validForm()}>
-            {user ? "修改" : "添加"}
+            {user ? "Edit" : "Add"}
           </Button>
         </div>
       </ModalFooter>

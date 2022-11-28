@@ -46,9 +46,11 @@ const privilegeToBadge = (user, servers, ports) => {
   //   components.push(<span>{user.allowed_servers.map(s => servers[s.server_id] && servers[s.server_id].name).join(',')}</span>)
   // }
   if (!user || !user.allowed_ports || user.allowed_ports.length === 0) {
-    components.push(<Badge type="success">0个端口权限</Badge>)
+    components.push(<Badge type="success">No port usage is allowed.</Badge>)
+  } else if (user.allowed_ports.length === 1) {
+    components.push(<Badge type="success">{`Allowed to use ${user.allowed_ports.length} port.`}</Badge>)
   } else {
-    components.push(<Badge type="success">{`${user.allowed_ports.length}个端口权限`}</Badge>)
+    components.push(<Badge type="success">{`Allowed to use ${user.allowed_ports.length} ports.`}</Badge>)
   }
   return (
     <>
@@ -97,7 +99,7 @@ function Users() {
           iconLeft={PlusIcon}
           onClick={() => {setCurrentUser(null);setIsUserEditorOpen(true)}}
         >
-          添加
+          Add User
         </Button>
       </div>
 
@@ -107,7 +109,7 @@ function Users() {
         setIsModalOpen={setIsUserEditorOpen}
       />
       <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
-        <ModalHeader>删除用户</ModalHeader>
+        <ModalHeader>Delete User</ModalHeader>
         <ModalBody>
           <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <Label>
@@ -116,17 +118,17 @@ function Users() {
                 checked={removeRule}
                 onChange={() => setRemoveRule(!removeRule)}
               />
-              <span className="ml-2">清退(删除所有转发，端口用量清零)</span>
+              <span className="ml-2">Delete all forwarding rules and traffic usage info.</span>
             </Label>
           </div>
         </ModalBody>
         <ModalFooter>
           <div className="w-full flex flex-row justify-end space-x-2">
             <Button layout="outline" onClick={() => setIsDeleteModalOpen(false)}>
-              取消
+              Cancel
           </Button>
             <Button onClick={submitDeleteUser} >
-            确定
+            Confirm
           </Button>
           </div>
         </ModalFooter>
@@ -137,11 +139,11 @@ function Users() {
         <Table>
           <TableHeader>
             <tr>
-              <TableCell>邮箱</TableCell>
-              <TableCell>备注</TableCell>
-              <TableCell>权限</TableCell>
-              <TableCell>活跃</TableCell>
-              <TableCell>动作</TableCell>
+              <TableCell>E-mail</TableCell>
+              <TableCell>Comment</TableCell>
+              <TableCell>Role</TableCell>
+              <TableCell>Enabled</TableCell>
+              <TableCell>Action</TableCell>
             </tr>
           </TableHeader>
           <TableBody>
@@ -155,7 +157,7 @@ function Users() {
                       <>
                       <span className="text-sm text-purple-700">{user.email}</span>
                       <span className="ml-1">
-                      <Tooptip tip="服务器管理员">
+                      <Tooptip tip="Server Admin">
                         <Star size={12} weight="bold" /> 
                       </Tooptip>
                     </span> </>: <span className="text-sm">{user.email}</span>}
@@ -166,7 +168,7 @@ function Users() {
                       ? user.notes.length > 10
                         ? `${user.notes.slice(0, 10)}...`
                         : user.notes
-                      : "无"}
+                      : "None"}
                     </Tooltip>
                   </TableCell>
                   <TableCell>
@@ -201,7 +203,7 @@ function Users() {
                         size="small"
                         onClick={() => history.push(`/app/users/${user.id}`)}
                       >
-                        查看
+                        Detail
                         </Button>
                       <Button
                         size="small"
@@ -210,7 +212,7 @@ function Users() {
                           setIsUserEditorOpen(true);
                         }}
                       >
-                        编辑
+                        Edit
                         </Button>
                       <button
                         className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-sm text-white bg-red-500 border border-transparent active:bg-red-500 hover:bg-red-600 focus:shadow-outline-red"
@@ -219,7 +221,7 @@ function Users() {
                           setIsDeleteModalOpen(true);
                         }}
                       >
-                        删除
+                        Delete
                         </button>
                     </div>
                   </TableCell>

@@ -117,7 +117,7 @@ export const editMe = (data) => {
       .then((response) => {
         const data = response.data;
         if (data) {
-          dispatch(showBanner("用户修改", "修改成功", "success"));
+          dispatch(showBanner("User Edit", "Modified.", "success"));
           dispatch({
             type: ADD_ME,
             payload: data,

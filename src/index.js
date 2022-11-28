@@ -19,15 +19,15 @@ import * as serviceWorker from "./serviceWorker";
 //   const axe = require('react-axe')
 //   axe(React, ReactDOM, 1000)
 // }
-if (process.env.REACT_APP_VERSION !== "local") {
-  Sentry.init({
-    release: process.env.REACT_APP_VERSION,
-    dsn:
-      "https://dfde03ca442241949eb54db720f3629e@sentry.leishi.io/4",
-    integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 1.0,
-  });
-}
+// if (process.env.REACT_APP_VERSION !== "local") {
+//   Sentry.init({
+//     release: process.env.REACT_APP_VERSION,
+//     dsn:
+//       "https://dfde03ca442241949eb54db720f3629e@sentry.leishi.io/4",
+//     integrations: [new Integrations.BrowserTracing()],
+//     tracesSampleRate: 1.0,
+//   });
+// }
 
 ReactDOM.render(
   <Provider store={store}>

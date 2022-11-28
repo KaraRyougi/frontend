@@ -232,7 +232,7 @@ export const createForwardRule = (server_id, port_id, data) => {
       .then((response) => {
         const data = response.data;
         if (data) {
-          dispatch(showBanner("转发添加成功", "正在生效中", "success"))
+          dispatch(showBanner("Forwarding rule added.", "Applying...", "success"))
           dispatch({
             type: ADD_SERVER_PORT_FORWARD_RULE,
             payload: {
@@ -258,7 +258,7 @@ export const editForwardRule = (server_id, port_id, data) => {
       .then((response) => {
         const data = response.data;
         if (data) {
-          dispatch(showBanner("转发修改成功", "正在生效中", "success"))
+          dispatch(showBanner("Forwarding rule modified.", "Applying...", "success"))
           dispatch({
             type: ADD_SERVER_PORT_FORWARD_RULE,
             payload: {
@@ -284,7 +284,7 @@ export const deleteForwardRule = (server_id, port_id) => {
       .then((response) => {
         const data = response.data;
         if (data) {
-          dispatch(showBanner("转发删除成功", "正在生效中", "success"))
+          dispatch(showBanner("Forwarding rule deleted.", "Applying...", "success"))
           dispatch({
             type: DELETE_SERVER_PORT_FORWARD_RULE,
             payload: {
@@ -302,7 +302,7 @@ export const editServerPortUsage = (server_id, port_id, data) => {
     serverPortUsageEdit(server_id, port_id, data).then(response => {
       const data = response.data;
       if (data) {
-        dispatch(showBanner("重置流量成功", "流量已清零", "success"))
+        dispatch(showBanner("Reset Traffic Usage", "Reseted.", "success"))
         dispatch({
           type: ADD_SERVER_PORT_USAGE,
           payload: data

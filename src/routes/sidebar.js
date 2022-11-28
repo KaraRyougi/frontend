@@ -9,19 +9,19 @@ const routes = [
   {
     path: '/app/users',
     icon: 'Users',
-    name: '用户',
+    name: 'Users',
     permissions: ['admin'],
   },
   {
     path: '/app/servers',
     icon: 'Stack',
-    name: '服务器',
+    name: 'Servers',
     permissions: ['admin', 'ops', 'user'],
   },
   {
     path: '/app/about',
     icon: 'At',
-    name: '关于',
+    name: 'About',
     permissions: ['admin', 'ops', 'user'],
   },
 ]

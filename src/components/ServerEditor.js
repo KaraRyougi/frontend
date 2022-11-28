@@ -136,7 +136,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
       {loading ? <FullScreenLoading />
         : (isModalOpen ? <>
-          <ModalHeader>{server ? "修改" : "添加"}服务器</ModalHeader>
+          <ModalHeader>{server ? "Edit" : "Add"} a Server</ModalHeader>
           <ModalBody>
             <Label className="mt-4">
               <div className="flex flex-row justify-start items-center space-x-2">
@@ -149,7 +149,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                       setTab({ server: true });
                     }}
                   >
-                    基本信息
+                    Basic Info
               </Button>
                 </div>
                 <div className={`${tab.app ? "border-b-2" : ""} ${server ? "block" : "hidden"}`}>
@@ -160,7 +160,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                       setTab({ app: true });
                     }}
                   >
-                    应用
+                    Applications
               </Button>
                 </div>
               </div>
@@ -168,17 +168,17 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
             {tab.server ? (
               <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <Label className="mt-1">
-                  <span>名字</span>
+                  <span>Name</span>
                   <Input
                     className="mt-1"
-                    placeholder="上海CN2"
+                    placeholder="US East 1 Oregon"
                     value={name}
                     valid={validName()}
                     onChange={(e) => setName(e.target.value)}
                   />
                 </Label>
                 <Label className="mt-1">
-                  <span>地址</span>
+                  <span>Address</span>
                   <Input
                     className="mt-1"
                     placeholder={"www.example.com"}
@@ -188,7 +188,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                   />
                 </Label>
                 <Label className="mt-1">
-                  <span>Ansible别名（可以中文，但不要加特殊字符/空格）</span>
+                  <span>Ansible Alias (No Special Character or Space)</span>
                   <Input
                     className="mt-1"
                     placeholder={"cn2"}
@@ -198,11 +198,11 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                   />
                 </Label>
                 <Label className="mt-1 flex flex-col">
-                  <span>SSH连接信息</span>
+                  <span>SSH Info</span>
                   <div className="mt-1 flex flex-row items-center">
                     <div className="flex flex-auto">
                       <Input
-                        placeholder={"默认root"}
+                        placeholder={"default: root"}
                         value={sshUser}
                         valid={() => sshUser.length > 0}
                         onChange={(e) => setSshUser(e.target.value)}
@@ -211,7 +211,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                     <At size={24} />
                     <div className="flex flex-auto">
                       <Input
-                        placeholder={"默认为服务器地址"}
+                        placeholder={"default: server address"}
                         value={ansibleHost}
                         valid={validAnsibleHost()}
                         onChange={(e) => setAnsibleHost(e.target.value)}
@@ -220,7 +220,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                     <TwoDotIcon />
                     <div className="flex flex-auto">
                       <Input
-                        placeholder={"默认22"}
+                        placeholder={"default: 22"}
                         value={ansiblePort}
                         valid={validAnsiblePort()}
                         onChange={(e) => setAnsiblePort(e.target.value)}
@@ -230,7 +230,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                 </Label>
                 <Label className="mt-1">
                   <div className="flex flex-row justify-between items-center">
-                    <span>SSH密码</span>
+                    <span>SSH Password</span>
                     <div>
                       <Input
                         type="checkbox"
@@ -238,13 +238,13 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                         checked={!sshPasswordNeeded}
                         onChange={() => setSshPasswordNeeded(!sshPasswordNeeded)}
                       />
-                      <span>不需要SSH密码</span>
+                      <span>No Password Required</span>
                     </div>
                   </div>
                   <Input
                     className="mt-1"
                     type="password"
-                    placeholder={"可为空，默认使用ssh key"}
+                    placeholder={"Leave empty to use SSH key."}
                     value={sshPassword}
                     valid={sshPasswordNeeded ? () => !sshPassword || sshPassword.length >= 6 : undefined}
                     disabled={!sshPasswordNeeded}
@@ -253,7 +253,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                 </Label>
                 <Label className="mt-1">
                   <div className="flex flex-row justify-between items-center">
-                    <span>SUDO密码</span>
+                    <span>sudo password</span>
                     <div>
                       <Input
                         type="checkbox"
@@ -261,13 +261,13 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                         checked={!sudoPasswordNeeded}
                         onChange={() => setSudoPasswordNeeded(!sudoPasswordNeeded)}
                       />
-                      <span>不需要SUDO密码</span>
+                      <span>No sudo Password Required</span>
                     </div>
                   </div>
                   <Input
                     className="mt-1"
                     type="password"
-                    placeholder={"可为空，用户非root且需输sudo密码则需填写"}
+                    placeholder={"Leave empty if not required."}
                     value={sudoPassword}
                     valid={sudoPasswordNeeded ? () => !sudoPassword || sudoPassword.length >= 6 : undefined}
                     disabled={!sudoPasswordNeeded}
@@ -282,7 +282,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                       checked={isDelete}
                       onChange={() => setIsDelete(!isDelete)}
                     />
-                    <span className="ml-2">我要删除这台服务器</span>
+                    <span className="ml-2">Delete Server</span>
                   </Label>
                 ) : null}
               </div>
@@ -294,13 +294,13 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                     <span className="w-1/3">{app}</span>
                     <div className="w-2/3 space-x-2">
                       {/* <Button size="small" onClick={submitForm} disabled={!validForm()}>
-                  {server.config[app] ? '更新' : '安装'}
+                  {server.config[app] ? 'Update' : 'Install'}
                 </Button> */}
                       <button
                         className={`align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-sm text-white border border-transparent ${!server.config[`${app}_disabled`] ? `bg-purple-600 active:bg-purple-600 hover:bg-purple-700` : `bg-red-600 active:bg-red-600 hover:bg-red-700`}`}
                         onClick={() => toggleApp(server, app)}
                       >
-                        {server.config[`${app}_disabled`] ? '已禁用' : '已启用'}
+                        {server.config[`${app}_disabled`] ? 'Disabled' : 'Enabled'}
                       </button>
                     </div>
                   </Label>
@@ -311,10 +311,10 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
           <ModalFooter>
             <div className="w-full flex flex-row justify-end space-x-2">
               <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-                取消
+                Cancel
           </Button>
               <Button onClick={submitForm} disabled={!validForm()}>
-                {server ? "修改" : "添加"}
+                {server ? "Edit" : "Add"}
               </Button>
             </div>
           </ModalFooter>

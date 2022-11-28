@@ -13,29 +13,18 @@ function About() {
             src={Profile}
           />
           <div class="text-center lg:w-2/3 w-full">
-            <h1 class="title-font sm:text-4xl md:text-3xl text-2xl mb-4 font-medium text-gray-900">
-              极光面板 {process.env.REACT_APP_VERSION}
-            </h1>
+            {/* <h1 class="title-font sm:text-4xl md:text-3xl text-2xl mb-4 font-medium text-gray-900">
+              Based on the open-source project {process.env.REACT_APP_VERSION}
+            </h1> */}
             <p class="mt-1 leading-relaxed">
-              觉得不错的话，欢迎
               <a
                 className="text-blue-500"
                 href="https://github.com/aurora-admin-panel"
               >
-                star
+                Original Project Repository
               </a>
             </p>
-            <p class="mt-1 leading-relaxed">
-              有什么问题，可以来
-              <a
-                className="text-blue-500"
-                href="http://t.me/aurora_admin_panel"
-              >
-                telegram
-              </a>
-              讨论
-            </p>
-            <p class="mt-1 mb-5 leading-relaxed">当然，也可以请我喝杯咖啡</p>
+            <p class="mt-1 mb-5 leading-relaxed">Donation to original author: </p>
             <div class="flex justify-center">
               <a
                 class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"

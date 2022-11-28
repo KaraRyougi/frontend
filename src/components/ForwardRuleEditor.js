@@ -11,36 +11,10 @@ import {
 import Modal from '../components/Modals/Modal'
 
 import { deleteForwardRule } from "../redux/actions/ports";
-import GostRuleEditor from "../components/RuleEditors/GostRuleEditor";
-import EhcoRuleEditor from "../components/RuleEditors/EhcoRuleEditor";
 import IptablesRuleEditor from "../components/RuleEditors/IptablesRuleEditor";
-import CaddyRuleEditor from "../components/RuleEditors/CaddyRuleEditor";
-import V2rayRuleEditor from "../components/RuleEditors/V2rayRuleEditor";
-import BrookRuleEditor from "../components/RuleEditors/BrookRuleEditor";
-import SocatRuleEditor from "../components/RuleEditors/SocatRuleEditor";
-import IperfRuleEditor from "../components/RuleEditors/IperfRuleEditor";
-import RealmRuleEditor from "../components/RuleEditors/RealmRuleEditor";
-import HaproxyRuleEditor from "../components/RuleEditors/HaproxyRuleEditor";
-import WstunnelRuleEditor from "../components/RuleEditors/WstunnelRuleEditor";
-import ShadowsocksRuleEditor from "../components/RuleEditors/ShadowsocksRuleEditor";
-import NodeExporterRuleEditor from "../components/RuleEditors/NodeExporterRuleEditor";
-import TinyPortMapperRuleEditor from "../components/RuleEditors/TinyPortMapperRuleEditor";
 
 const MethodOptions = [
-  { label: "iptables", value: "iptables" },
-  { label: "brook", value: "brook" },
-  { label: "caddy", value: "caddy" },
-  { label: "ehco", value: "ehco" },
-  { label: "gost", value: "gost" },
-  { label: "socat", value: "socat" },
-  { label: "realm", value: "realm" },
-  { label: "v2ray", value: "v2ray" },
-  { label: "iperf3", value: "iperf" },
-  { label: "haproxy", value: "haproxy" },
-  { label: "wstunnel", value: "wstunnel" },
-  { label: "shadowsocks", value: "shadowsocks" },
-  { label: "tinyPortMapper", value: "tiny_port_mapper" },
-  { label: "prometheus node exporter", value: "node_exporter" },
+  { label: "iptables", value: "iptables" }
 ];
 
 const ForwardRuleEditor = ({
@@ -83,7 +57,7 @@ const ForwardRuleEditor = ({
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="-mt-6 mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
           <div className="mt-1 flex flex-row justify-start items-center">
-            <span className="w-auto">端口功能</span>
+            <span className="w-auto">Port Function</span>
             <div className="w-1/3 ml-3">
               <Select
                 className="mt-1 w-1/2"
@@ -121,162 +95,6 @@ const ForwardRuleEditor = ({
               />
             ) : null}
 
-            {method === "gost" ? (
-              <GostRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "haproxy" ? (
-              <HaproxyRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "ehco" ? (
-              <EhcoRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "wstunnel" ? (
-              <WstunnelRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "v2ray" ? (
-              <V2rayRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "shadowsocks" ? (
-              <ShadowsocksRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "brook" ? (
-              <BrookRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "caddy" ? (
-              <CaddyRuleEditor
-                serverId={serverId}
-                port={port}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "socat" ? (
-              <SocatRuleEditor
-                serverId={serverId}
-                portId={port.id}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "realm" ? (
-              <RealmRuleEditor
-                serverId={serverId}
-                portId={port.id}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "iperf" ? (
-              <IperfRuleEditor
-                serverId={serverId}
-                portId={port.id}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "tiny_port_mapper" ? (
-              <TinyPortMapperRuleEditor
-                serverId={serverId}
-                portId={port.id}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
-            {method === "node_exporter" ? (
-              <NodeExporterRuleEditor
-                serverId={serverId}
-                portId={port.id}
-                isModalOpen={isModalOpen}
-                method={method}
-                forwardRule={forwardRule}
-                setValidRuleForm={setValidRuleForm}
-                setSubmitRuleForm={setSubmitRuleForm}
-              />
-            ) : null}
-
             {forwardRule ? (
               <Label className="mt-6">
                 <Input
@@ -284,7 +102,7 @@ const ForwardRuleEditor = ({
                   checked={isDelete}
                   onChange={() => setIsDelete(!isDelete)}
                 />
-                <span className="ml-2">我要关闭此端口功能</span>
+                <span className="ml-2">Port Disalbe</span>
               </Label>
             ) : null}
           </div>
@@ -292,10 +110,10 @@ const ForwardRuleEditor = ({
         <ModalFooter>
           <div className="w-full flex flex-row justify-end space-x-2">
             <Button layout="outline" onClick={() => setIsModalOpen(false)}>
-              取消
+              Cancel
             </Button>
             <Button onClick={submitForm} disabled={!validForm()}>
-              {forwardRule ? "修改" : "添加"}
+              {forwardRule ? "Edit" : "Add"}
             </Button>
           </div>
         </ModalFooter>

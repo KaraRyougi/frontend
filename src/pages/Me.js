@@ -58,11 +58,11 @@ function Me() {
         isOpen={isPasswordModalOpen}
         onClose={() => setIsPasswordModalOpen(false)}
       >
-        <ModalHeader>修改密码</ModalHeader>
+        <ModalHeader>Change Password</ModalHeader>
         <ModalBody>
           <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <Label className="mt-4">
-              <span>原密码</span>
+              <span>Old Password</span>
               <Input
                 className="mt-1"
                 type="password"
@@ -72,7 +72,7 @@ function Me() {
               />
             </Label>
             <Label className="mt-4">
-              <span>新密码</span>
+              <span>New Password</span>
               <Input
                 className="mt-1"
                 type="password"
@@ -82,7 +82,7 @@ function Me() {
               />
             </Label>
             <Label className="mt-4">
-              <span>重复新密码</span>
+              <span>Confirm New Password</span>
               <Input
                 className="mt-1"
                 type="password"
@@ -109,9 +109,9 @@ function Me() {
       </Modal>
       <PageTitle>{me.email}</PageTitle>
 
-      <SectionTitle>密码</SectionTitle>
+      <SectionTitle>Password</SectionTitle>
       <div>
-        <Button onClick={() => setIsPasswordModalOpen(true)}>修改密码</Button>
+        <Button onClick={() => setIsPasswordModalOpen(true)}>Edit Password</Button>
       </div>
     </>
   );
