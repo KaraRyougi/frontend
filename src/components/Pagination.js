@@ -142,7 +142,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
        */}
       <div className="flex items-center justify-start font-semibold tracking-wide uppercase">
         <span>
-          共{totalResults}项 每页
+          Total: {totalResults} Each Page:
       </span>
         <div className='ml-1 w-1.5'>
           <Select value={resultsPerPage} onChange={e => updateSize(e.target.value)}>
