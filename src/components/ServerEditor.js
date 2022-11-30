@@ -136,7 +136,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
       {loading ? <FullScreenLoading />
         : (isModalOpen ? <>
-          <ModalHeader>{server ? "Edit" : "Add"} a Server</ModalHeader>
+          <ModalHeader>{server ? "Apply" : "Add"} a Server</ModalHeader>
           <ModalBody>
             <Label className="mt-4">
               <div className="flex flex-row justify-start items-center space-x-2">
@@ -150,17 +150,6 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                     }}
                   >
                     Basic Info
-              </Button>
-                </div>
-                <div className={`${tab.app ? "border-b-2" : ""} ${server ? "block" : "hidden"}`}>
-                  <Button
-                    layout="link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setTab({ app: true });
-                    }}
-                  >
-                    Applications
               </Button>
                 </div>
               </div>
@@ -287,26 +276,6 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                 ) : null}
               </div>
             ) : null}
-            {server && tab.app ? (
-              <div className="flex flex-col justify-start px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                {['brook', 'caddy', 'ehco', 'gost', 'node_exporter', 'shadowsocks', 'socat', 'tiny_port_mapper', 'v2ray', 'wstunnel', 'realm', 'iperf'].map(app =>
-                  <Label className="mt-1 flex flex-row items-center" key={`server_${server.id}_${app}_toggle`}>
-                    <span className="w-1/3">{app}</span>
-                    <div className="w-2/3 space-x-2">
-                      {/* <Button size="small" onClick={submitForm} disabled={!validForm()}>
-                  {server.config[app] ? 'Update' : 'Install'}
-                </Button> */}
-                      <button
-                        className={`align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-3 py-1 rounded-md text-sm text-white border border-transparent ${!server.config[`${app}_disabled`] ? `bg-purple-600 active:bg-purple-600 hover:bg-purple-700` : `bg-red-600 active:bg-red-600 hover:bg-red-700`}`}
-                        onClick={() => toggleApp(server, app)}
-                      >
-                        {server.config[`${app}_disabled`] ? 'Disabled' : 'Enabled'}
-                      </button>
-                    </div>
-                  </Label>
-                )}
-              </div>
-            ) : null}
           </ModalBody>
           <ModalFooter>
             <div className="w-full flex flex-row justify-end space-x-2">
@@ -314,7 +283,7 @@ const ServerEditor = ({ isModalOpen, setIsModalOpen }) => {
                 Cancel
           </Button>
               <Button onClick={submitForm} disabled={!validForm()}>
-                {server ? "Edit" : "Add"}
+                {server ? "Apply" : "Add"}
               </Button>
             </div>
           </ModalFooter>

@@ -113,7 +113,7 @@ const ForwardRuleEditor = ({
               Cancel
             </Button>
             <Button onClick={submitForm} disabled={!validForm()}>
-              {forwardRule ? "Edit" : "Add"}
+              {forwardRule ? "Apply" : "Add"}
             </Button>
           </div>
         </ModalFooter>

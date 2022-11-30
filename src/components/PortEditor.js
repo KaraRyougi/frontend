@@ -181,7 +181,7 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
 
   return (
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <ModalHeader>{port ? "Edit" : "Add"} a Port</ModalHeader>
+      <ModalHeader>{port ? "Apply" : "Add"} a Port</ModalHeader>
       {port ?
         <ModalBody>
           <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -404,7 +404,7 @@ const PortEditor = ({ port, serverId, isModalOpen, setIsModalOpen }) => {
             Cancel
           </Button>
           <Button onClick={submitForm} disabled={!validForm()}>
-            {port ? "Edit" : "Add"}
+            {port ? "Apply" : "Add"}
           </Button>
         </div>
       </ModalFooter>

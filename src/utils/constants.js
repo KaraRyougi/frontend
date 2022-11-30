@@ -11,15 +11,15 @@ export const QuotaOptions = [
 ];
 
 export const DueActionOptions = [
-  { label: "无动作", value: 0 },
-  { label: "限速10kb/s", value: 1 },
-  { label: "限速100kb/s", value: 2 },
-  { label: "限速1Mb/s", value: 3 },
-  { label: "限速10Mb/s", value: 4 },
-  { label: "限速30Mb/s", value: 5 },
-  { label: "限速100Mb/s", value: 6 },
-  { label: "限速1Gb/s", value: 7 },
-  { label: "删除转发规则", value: 8 },
+  { label: "No Action", value: 0 },
+  { label: "Speed Limit to 10kb/s", value: 1 },
+  { label: "Speed Limit to 100kb/s", value: 2 },
+  { label: "Speed Limit to 1Mb/s", value: 3 },
+  { label: "Speed Limit to 10Mb/s", value: 4 },
+  { label: "Speed Limit to 30Mb/s", value: 5 },
+  { label: "Speed Limit to 100Mb/s", value: 6 },
+  { label: "Speed Limit to 1Gb/s", value: 7 },
+  { label: "Delete Forwarding Rules", value: 8 },
 ];
 
 export const DateOptions = {

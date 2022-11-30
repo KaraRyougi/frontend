@@ -65,7 +65,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
 
   return (
     <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-      <ModalHeader>{user ? "Edit" : "Add"} User</ModalHeader>
+      <ModalHeader>{user ? "Apply" : "Add"} User</ModalHeader>
       <ModalBody>
         <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
           <Label className="mt-4">
@@ -134,7 +134,7 @@ const UserEditor = ({ user, isModalOpen, setIsModalOpen }) => {
             Cancel
           </Button>
           <Button onClick={submitForm} disabled={!validForm()}>
-            {user ? "Edit" : "Add"}
+            {user ? "Apply" : "Add"}
           </Button>
         </div>
       </ModalFooter>
