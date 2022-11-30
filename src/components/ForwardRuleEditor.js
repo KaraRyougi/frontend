@@ -102,7 +102,7 @@ const ForwardRuleEditor = ({
                   checked={isDelete}
                   onChange={() => setIsDelete(!isDelete)}
                 />
-                <span className="ml-2">Port Disalbe</span>
+                <span className="ml-2">Port Disable</span>
               </Label>
             ) : null}
           </div>
